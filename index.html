@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Face Loader</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 0% 0%, #004d40 0, #000810 55%, #000000 100%);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow: hidden;
+    }
+
+    .loader-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .face {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      top: calc(50% - 90px);
+      left: calc(50% - 90px);
+
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      animation: bounce 1.4s ease-in-out infinite;
+      cursor: default;
+    }
+
+    .face img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* подпрыгивание */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-60px); }
+    }
+
+    /* мягкое дрожание при наведении */
+    @keyframes jitter {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(0.4px, -0.4px) rotate(-0.15deg); }
+      50%  { transform: translate(-0.4px, 0.4px) rotate(0.15deg); }
+      75%  { transform: translate(0.3px, 0) rotate(-0.1deg); }
+      100% { transform: translate(-0.3px, -0.3px) rotate(0.1deg); }
+    }
+
+    .face:hover {
+      animation: jitter 0.3s infinite;
+      cursor: pointer;
+    }
+
+    .loader-label {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%);
+      color: #c8f5eb;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* точки после Loading */
+    .dots {
+      display: inline-flex;
+      margin-left: 2px;
+    }
+
+    .dots span {
+      animation: dotPulse 1.2s infinite ease-in-out;
+      opacity: 0.2;
+      transform: translateY(0);
+    }
+
+    .dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes dotPulse {
+      0%, 20% {
+        opacity: 0.2;
+        transform: translateY(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+      100% {
+        opacity: 0.2;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-wrapper">
+    <div class="face">
+      <!-- подставь имя своей PNG -->
+      <img src="void-cube.png" alt="Face" />
+    </div>
+
+    <div class="loader-label">
+      Loading
+      <span class="dots">
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </span>
+    </div>
+  </div>
+</body>
+</html>
