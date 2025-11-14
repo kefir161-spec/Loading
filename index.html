@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Face Loader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Face Loader (Mobile Friendly)</title>
   <style>
     html, body {
       height: 100%;
@@ -16,15 +17,18 @@
     .loader-wrapper {
       position: relative;
       width: 100%;
-      height: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
     }
 
     .face {
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      top: calc(50% - 90px);
-      left: calc(50% - 90px);
+      width: min(60vw, 220px);
+      height: min(60vw, 220px);
 
       background: none;
       border-radius: 0;
@@ -36,6 +40,7 @@
 
       animation: bounce 1.4s ease-in-out infinite;
       cursor: default;
+      touch-action: manipulation;
     }
 
     .face img {
@@ -45,10 +50,10 @@
       display: block;
     }
 
-    /* подпрыгивание */
+    /* подпрыгивание — аккуратно и на мобиле */
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-60px); }
+      50%      { transform: translateY(-12%); }
     }
 
     /* мягкое дрожание при наведении */
@@ -66,10 +71,7 @@
     }
 
     .loader-label {
-      position: absolute;
-      left: 50%;
-      bottom: 40px;
-      transform: translateX(-50%);
+      margin-top: 24px;
       color: #c8f5eb;
       font-size: 14px;
       letter-spacing: 0.12em;
@@ -78,9 +80,9 @@
       display: inline-flex;
       align-items: center;
       gap: 2px;
+      text-align: center;
     }
 
-    /* точки после Loading */
     .dots {
       display: inline-flex;
       margin-left: 2px;
@@ -114,12 +116,20 @@
         transform: translateY(0);
       }
     }
+
+    @media (max-width: 480px) {
+      .loader-label {
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        margin-top: 18px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="loader-wrapper">
     <div class="face">
-      <!-- подставь имя своей PNG -->
+      <!-- ПОДСТАВЬ ИМЯ СВОЕЙ PNG -->
       <img src="void-cube.png" alt="Face" />
     </div>
 
